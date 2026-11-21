@@ -1,0 +1,398 @@
+// Dashboard Style
+@import "_colors";
+
+.dashboard_main {}
+
+.card-style-1 {
+    border-radius: 30px;
+    background: #003a8c;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+    height: 100%;
+
+    .header {
+        background: transparent;
+        align-items: center;
+
+        .title-name {
+            font-size: 24px;
+            color: #fff;
+        }
+    }
+
+    .content {
+        padding-bottom: 0;
+        margin-top: auto;
+
+        .list-group {
+            .list-group-item {
+                background: transparent;
+                color: #fff;
+                border: none;
+                display: flex;
+                justify-content: space-between;
+                font-size: 18px;
+                padding: 5px 0;
+            }
+        }
+    }
+}
+
+.card-style-2 {
+    border-radius: 30px;
+    background: #fff;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+    height: 100%;
+
+    .header {
+        background: transparent;
+        align-items: center;
+
+        .title-name {
+            font-size: 24px;
+            color: #000;
+        }
+    }
+
+    .content {
+        padding: 0;
+    }
+}
+
+.latest_jobs_posted_card {
+    border-radius: 30px;
+    background: #0050b3;
+    box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+    height: auto;
+
+    .header {
+        background: transparent;
+        align-items: center;
+        height: auto;
+        margin-bottom: 1rem;
+
+        .title-name {
+            font-size: 24px;
+            color: #fff;
+        }
+
+        .see_all_btn {
+            font-size: 16px;
+            color: #fff;
+        }
+    }
+
+    .content {
+        padding: 0;
+
+        .jobs_card_style {
+            border-radius: 10px;
+            background: $white;
+            box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05),
+                0px 6px 16px 0px rgba(0, 0, 0, 0.08),
+                0px 3px 6px -4px rgba(0, 0, 0, 0.12);
+            padding: 16px 24px;
+            margin-bottom: 1.5rem;
+            width: 100%;
+
+            h3 {
+                font-size: 22px;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                color: rgba(0, 0, 0, 0.85);
+            }
+
+            p {
+                color: #b0b0b0;
+                font-size: 14px;
+                font-style: normal;
+                font-weight: 500;
+                line-height: 22px;
+
+                span {
+                    color: $secondary;
+                }
+            }
+
+            .dept {
+                display: flex;
+                justify-content: space-between;
+                padding-bottom: 15px;
+
+                p {
+                    margin-bottom: 0;
+                }
+            }
+
+            .btn_job_card {
+                border-radius: 4px;
+                background: $secondary;
+                color: $white;
+                padding: 5px 16px;
+                font-size: 14px;
+
+                // position: absolute;
+                // bottom: 15px;
+                // left: 15px;
+            }
+
+            &:hover {
+                background: #e6f7ff;
+
+                p span {
+                    color: #096dd9;
+                }
+            }
+        }
+    }
+}
+
+.current_live_jobs_card {
+    .header {
+        background: transparent;
+        align-items: center;
+
+        .title-name {
+            font-size: 24px;
+            color: #000;
+        }
+
+        .see_all_btn {
+            font-size: 16px;
+            color: #0050b3;
+        }
+    }
+
+    .jobs_card_style {
+        border-radius: 10px;
+        background: $white;
+        box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05),
+            0px 6px 16px 0px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12);
+        padding: 16px 24px;
+        width: 100%;
+
+        h3 {
+            font-size: 20px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            color: rgba(0, 0, 0, 0.85);
+        }
+
+        p {
+            color: #b0b0b0;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 450;
+            line-height: 22px;
+
+            span {
+                color: $secondary;
+            }
+        }
+
+        .dept {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 15px;
+
+            p {
+                margin-bottom: 0;
+            }
+        }
+
+        .btn_job_card {
+            border-radius: 4px;
+            background: $secondary;
+            color: $white;
+            padding: 5px 16px;
+            font-size: 14px;
+        }
+
+        &:hover {
+            background: #e6f7ff;
+
+            p span {
+                color: #096dd9;
+            }
+        }
+    }
+}
+
+.deadline_jobs_card {
+    border-radius: 10px;
+    background: $white;
+    box-shadow: 0px 9px 28px 8px rgba(0, 0, 0, 0.05),
+        0px 6px 16px 0px rgba(0, 0, 0, 0.08), 0px 3px 6px -4px rgba(0, 0, 0, 0.12);
+    padding: 10px;
+
+    .header {
+        background: transparent;
+        align-items: center;
+
+        .title-name {
+            font-size: 24px;
+            color: #000;
+        }
+
+        .see_all_btn {
+            font-size: 16px;
+            color: #0050b3;
+            border: none;
+            background-color: white;
+        }
+    }
+
+    .jobs_card_style {
+        border-radius: 10px;
+        background: #FFD8D8;
+        box-shadow: 0px 2px 8px 0px rgba(0, 0, 0, 0.15);
+        padding: 16px 24px;
+        width: 100%;
+
+        h3 {
+            font-size: 20px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            color: rgba(0, 0, 0, 0.85);
+        }
+
+        p {
+            color: #000;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 450;
+            line-height: 22px;
+
+            span {
+                color: #FF2F2F;
+            }
+        }
+
+        .dept {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 15px;
+            color: #000;
+
+            p {
+                margin-bottom: 0;
+                color: #000;
+            }
+        }
+
+        .btn_job_card {
+            border-radius: 4px;
+            background: #FF2F2F;
+            color: $white;
+            padding: 5px 16px;
+            font-size: 14px;
+        }
+
+        &:hover {
+            background: #e6f7ff;
+
+            p span {
+                color: #FF2F2F;
+            }
+        }
+    }
+}
+
+.chart_map_box {
+    text-align: center;
+    position: relative;
+
+    .map_size {
+        width: 80%;
+        position: absolute;
+        left: 0;
+        top: -30px;
+    }
+
+    .map {
+        stroke: #8a8b8c;
+        stroke-miterlimit: 10;
+    }
+
+    .map1 {
+        fill: #fff;
+    }
+
+    .map3 {
+        font-size: 18px;
+    }
+
+    .map:hover {
+        fill: #0f75fc3a;
+        cursor: pointer;
+        transition: all 1.5s;
+        transform: translate(130px, -130px) scale(1.1);
+    }
+
+    .mapDhaka {
+        fill: #6b6b6b;
+    }
+
+    .mapRangpur {
+        fill: #803789;
+    }
+
+    .mapRangpur:hover {
+        fill: #0f75fc3a;
+        transform: translate(137px, -120px) scale(1.1);
+    }
+
+    .mapRajshahi {
+        fill: #0b72b5;
+    }
+
+    .mapRajshahi:hover {
+        fill: #0f75fc3a;
+        transform: translate(138px, -133px) scale(1.1);
+    }
+
+    .mapChittagong {
+        fill: #42a62a;
+    }
+
+    .mapChittagong:hover {
+        fill: #0f75fc3a;
+        transform: translate(120px, -142px) scale(1.1);
+    }
+
+    .mapMymensingh {
+        fill: #f37021;
+    }
+
+    .mapBarishal {
+        fill: #00378a;
+    }
+
+    .mapBarishal:hover {
+        fill: #0f75fc3a;
+        transform: translate(130px, -142px) scale(1.1);
+    }
+
+    .mapSylhet {
+        fill: #e3001b;
+    }
+
+    .mapSylhet:hover {
+        fill: #0f75fc3a;
+        transform: translate(121px, -123px) scale(1.1);
+    }
+
+    .mapKhulna {
+        fill: #e41371;
+    }
+
+    .mapKhulna:hover {
+        fill: #0f75fc3a;
+        transform: translate(138px, -133px) scale(1.1);
+    }
+}
