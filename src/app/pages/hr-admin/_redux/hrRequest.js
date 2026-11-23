@@ -19,6 +19,22 @@ export function deleteMenuCategory(id) {
 export function getMenuCategoryById(id) {
   return API.get(`/menu-categories/${id}`);
 }
+
+export function getInventoryItemList() {
+  return API.get(`/inventory-item`);
+}
+
+export function saveInventoryItem(param) {
+  return API.post(`/inventory-item`, param);
+}
+
+export function updateInventoryItem(param, id) {
+  return API.patch(`/inventory-item/${id}`, param);
+}
+
+export function deleteInventoryItem(id) {
+  return API.delete(`/inventory-item/${id}`);
+}
 // ------------- F&B Outlets END ----------------//
 
 export function getSettingsData() {

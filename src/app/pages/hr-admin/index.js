@@ -11,14 +11,13 @@ import Resume from "./applicant/Resume";
 import ShortResume from "./applicant/Resume/ShortResume";
 import Shortlisted from "./applicant/Shortliested";
 import ApplicantList from "./applicant/ApplicantList";
-import JobSummary from "./reports/JobSummary";
 import ShortlistedApplicantList from "./applicant/ShortlistedApplicantList";
 import ApplicantAnalytics from "./reports/ApplicantAnalytics";
 import ProfileSummary from "./reports/ProfileSummary";
-import OverallSummary from "./reports/OverallSummaryForEachJob";
 import BlackListReport from "./reports/BlackListApplicants";
 import BlacklistApplicantList from "./applicant/Blacklisted";
 import MenuCategoryList from "./menu_category";
+import InventoryItemsList from "./inventory_items";
 
 function HrAdminPanel({ userType }) {
   // if (userType != 3) {
@@ -30,6 +29,10 @@ function HrAdminPanel({ userType }) {
         <ContentRoute
           path="/hr-admin/menucategory/list"
           component={MenuCategoryList}
+        />
+        <ContentRoute
+          path="/hr-admin/inventory/item"
+          component={InventoryItemsList}
         />
         <ContentRoute
           path="/hr-admin/settings/view"
@@ -76,11 +79,7 @@ function HrAdminPanel({ userType }) {
           component={BlacklistApplicantList}
           exact
         />
-        <ContentRoute
-          path="/hr-admin/reports/jobs-summary"
-          component={JobSummary}
-          exact
-        />
+
         <ContentRoute
           path="/hr-admin/reports/applicant-analytics"
           component={ApplicantAnalytics}
@@ -91,11 +90,7 @@ function HrAdminPanel({ userType }) {
           component={ProfileSummary}
           exact
         />
-        <ContentRoute
-          path="/hr-admin/reports/applicant-summary"
-          component={OverallSummary}
-          exact
-        />
+
         <ContentRoute
           path="/hr-admin/reports/blacklist-applicants"
           component={BlackListReport}

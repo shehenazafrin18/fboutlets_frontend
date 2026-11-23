@@ -4,6 +4,7 @@ import { callTypes, hrSlice } from "./hrSlice";
 
 const { actions } = hrSlice;
 
+// Mneu category API start
 export const getMenuCategoryList = () => (dispatch) => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
@@ -100,6 +101,92 @@ export const getMenuCategoryById = (id) => (dispatch) => {
             menuCategoryData: response?.data?.data,
           }),
         );
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+// Inventory Items API Start
+export const getInventoryItemList = () => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .getInventoryItemList()
+    .then((response) => {
+      console.log("response", response?.data?.data);
+      if (response?.data) {
+        dispatch(
+          actions.getInventoryItemList({
+            inventoryItemList: response?.data?.data,
+          }),
+        );
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+export const deleteInventoryItem = (id) => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .deleteInventoryItem(id)
+    .then((response) => {
+      if (response.data.success) {
+        swalSuccess("Inventory Item Deleted !!!");
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+export const saveInventoryItem = (param) => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .saveInventoryItem(param)
+    .then((response) => {
+      if (response.data.success) {
+        swalSuccess("Inventory Item Saved!!!");
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+export const updateInventoryItem = (param, id) => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .updateInventoryItem(param, id)
+    .then((response) => {
+      if (response.data.success) {
+        swalSuccess("Inventory Item Updated!!!");
       } else {
         if (response.data.message) {
           swalError(response.data.message);

@@ -40,6 +40,11 @@ export const hrSlice = createSlice({
       state.actionsLoading = false;
       state.menuCategoryList = action.payload.menuCategoryList;
     },
+    getInventoryItemList: (state, action) => {
+      state.error = null;
+      state.actionsLoading = false;
+      state.inventoryItemList = action.payload.inventoryItemList;
+    },
 
     getMenuCategoryById: (state, action) => {
       state.error = null;

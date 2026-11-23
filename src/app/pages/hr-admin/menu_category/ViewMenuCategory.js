@@ -11,32 +11,8 @@ export default function ViewMenuCategory({
   setSelectedData,
   initSl,
   action,
-  sliderId,
+  menuCategoryId,
 }) {
-  const [tagline, setTagLine] = useState();
-  const [subTitile, setSubTitle] = useState("");
-
-  const SignupSchema = Yup.object().shape({
-    email: Yup.string().email("Invalid email").required("Required"),
-    per_divisions_id: Yup.number().required("Required"),
-  });
-
-  const handleTextEditor = (values, name) => {
-    if (name === "tag_line") {
-      setTagLine(values);
-    } else {
-      setSubTitle(values);
-    }
-  };
-
-  const handleSubmit = async (values) => {
-    alert(JSON.stringify(values, null, 2));
-    // return false;
-  };
-
-  const DOC_CONTAINER = process.env.REACT_APP_DOC_CONTAINER;
-  const DOC_TOKEN = process.env.REACT_APP_DOC_TOKEN;
-
   return (
     <Modal
       show={show}
@@ -47,7 +23,7 @@ export default function ViewMenuCategory({
         setSelectedData(initSl);
       }}
     >
-      <Modal.Header closeButton>
+      <Modal.Header>
         <Modal.Title>{action}</Modal.Title>
       </Modal.Header>
       <Modal.Body>
@@ -57,40 +33,15 @@ export default function ViewMenuCategory({
               <div className="row mt-4">
                 <div className="col-md-12 mb-3">
                   <label className="required">
-                    <b>Title</b>
+                    <b>Name</b>
                   </label>
-                  <p>{selectedData?.title}</p>
+                  <p>{selectedData?.name}</p>
                 </div>
                 <div className="col-md-12 mb-3">
                   <label className="required">
-                    <b>Subtitle</b>
+                    <b>Description</b>
                   </label>
-                  <p>{selectedData?.sub_title}</p>
-                </div>
-                <div className="col-md-12 mb-3">
-                  <label className="required">
-                    <b>Tagline</b>
-                  </label>
-                  <p>
-                    {" "}
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: selectedData?.tag_line,
-                      }}
-                    />
-                  </p>
-                </div>
-                <div className="col-md-4 mb-3">
-                  <label className="required">
-                    <b>Slider Images</b>
-                  </label>
-                  <br></br>
-                  <img
-                    width="250"
-                    src={DOC_CONTAINER + selectedData?.file_path + DOC_TOKEN}
-                    alt="image"
-                    className=" rounded"
-                  />
+                  <p>{selectedData?.description}</p>
                 </div>
 
                 <div className="col-md-12 mt-5 mb-3 text-right">

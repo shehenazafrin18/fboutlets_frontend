@@ -15,6 +15,7 @@ export default function AddMenuCategory({
   action,
   menuCategoryId,
   setMenuCategoryId,
+  setAction,
 }) {
   const dispatch = useDispatch();
 
@@ -24,15 +25,6 @@ export default function AddMenuCategory({
   });
 
   const handleSubmit = async (values) => {
-    console.log({ values });
-    // var formdata = new FormData();
-
-    // for (var key in values) {
-    //   if (values[key]) {
-    //     formdata.append(key, values[key]);
-    //   }
-    // }
-
     if (menuCategoryId) {
       await dispatch(hractions.updateMenuCategory(values, menuCategoryId));
     } else {
@@ -41,9 +33,9 @@ export default function AddMenuCategory({
     dispatch(hractions.getMenuCategoryList());
     setShow(false);
     setSelectedData(initSl);
-    setMenuCategoryId();
+    setMenuCategoryId(0);
+    setAction("Add Menu Category");
   };
-  console.log({ selectedData });
 
   return (
     <>
@@ -54,9 +46,10 @@ export default function AddMenuCategory({
         onHide={() => {
           setShow(false);
           setSelectedData(initSl);
+          setMenuCategoryId(0);
+          setAction("Add Menu Category");
         }}
       >
-        {JSON.stringify(selectedData)}
         <Formik
           initialValues={selectedData}
           validationSchema={ValidationSchema}
@@ -74,6 +67,8 @@ export default function AddMenuCategory({
                       type="button"
                       onClick={() => {
                         setShow(false);
+                        setMenuCategoryId(0);
+                        setAction("Add Menu Category");
                       }}
                     >
                       <i
@@ -89,7 +84,7 @@ export default function AddMenuCategory({
                       <div className="row mt-4">
                         <div className="col-md-12 mb-3">
                           <label className="required">
-                            <b>Title</b>
+                            <b>Name</b>
                           </label>
                           <Field
                             name="name"
@@ -128,6 +123,8 @@ export default function AddMenuCategory({
                             onClick={() => {
                               setShow(false);
                               setSelectedData(initSl);
+                              setMenuCategoryId(0);
+                              setAction("Add Menu Category");
                             }}
                           >
                             Cancel

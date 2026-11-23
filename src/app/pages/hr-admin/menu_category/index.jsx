@@ -8,18 +8,13 @@ import ViewMenuCategory from './ViewMenuCategory';
 import { swalConfirm } from '../../../helpers/swal';
 
 export default function MenuCategoryList() {
-    // console.log('MenuCategoryList'); return false;
     const dispatch = useDispatch();
     const [showEdit, setShowEdit] = useState(false);
     const [showView, setShowView] = useState(false);
-    const [tagline, setTagLine] = useState();
-    const [subTitile, setSubTitle] = useState('');
     const [menuCategoryId, setMenuCategoryId] = useState(0)
     const initSl = {
-        title: '',
-        sub_title: 'Available Jobs',
-        tag_line: '',
-        file_path: '',
+        name: '',
+        description: '',
     };
     const [selectedData, setSelectedData] = useState([initSl]);
     const [action, setAction] = useState('Add Menu Category')
@@ -38,7 +33,7 @@ export default function MenuCategoryList() {
         const newData = {
             'name': item?.name,
             'description': item?.description,
-            'status': item?.status,
+            'status': item?.is_active,
         };
         setSelectedData(newData);
         setAction(actionType);
@@ -92,7 +87,7 @@ export default function MenuCategoryList() {
                                                     {item?.description}
                                                 </td>
                                                 <td>
-                                                    {item?.status ? 'Active' : 'Inactive'}
+                                                    {item?.is_active ? 'Active' : 'Inactive'}
                                                 </td>
                                                 <td className="table_action_btn">
                                                     <Dropdown>
@@ -128,6 +123,7 @@ export default function MenuCategoryList() {
                 action={action}
                 menuCategoryId={menuCategoryId}
                 setMenuCategoryId={setMenuCategoryId}
+                setAction={setAction}
             />
             <ViewMenuCategory
                 show={showView}
