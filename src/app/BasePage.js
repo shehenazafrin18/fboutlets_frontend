@@ -3,7 +3,6 @@ import { Redirect, Switch, Route } from "react-router-dom";
 import { LayoutSplashScreen } from "../_metronic/layout";
 import MyProfilePage from "./pages/my-profile";
 import ResumeRoutes from "./pages/resume/Routes";
-import Jobs from "./pages/jobs";
 import AccountSettings from "./pages/settings";
 import DemoJobList from "./pages/DemoJobList";
 import HrAdminPanel from "./pages/hr-admin";
@@ -25,15 +24,10 @@ export default function BasePage() {
       <Switch>
         <Redirect exact from="/" to="/user-panel" />
 
-        {/* <Route path="/user-panel" component={AllDashboardPages} /> */}
-        {/* <Route path="/recruitement" component={RecruitmentPage} /> */}
         <Route path="/users" component={UserPage} />
 
-        {/* Ashiful Code */}
-        {/* <Route path="/my-profile" component={userType === 2 && MyProfilePage} /> */}
         <Route path="/user-setting" component={UserSettingsPage} />
-        <Route path="/resume" component={ResumeRoutes} />
-        <Route path="/jobs" component={Jobs} />
+        {/* <Route path="/resume" component={ResumeRoutes} /> */}
         <Route path="/settings" component={AccountSettings} />
         <Route path="/demo-page" component={DemoJobList} />
 

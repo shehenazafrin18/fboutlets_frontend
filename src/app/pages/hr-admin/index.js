@@ -3,10 +3,9 @@ import { Redirect, Switch } from "react-router";
 import { ContentRoute } from "../../../_metronic/layout";
 import { SplashScreen } from "../../../_metronic/_partials/controls";
 import Dashboard from "./dashboard/index";
-import SliderList from "./slider";
 import AdminSettings from "./settings";
-import Job from "./job";
-import JobsDetails from "./job/JobsDetails";
+// import Job from "./job";
+// import JobsDetails from "./job/JobsDetails";
 import Applicant from "./applicant";
 import Resume from "./applicant/Resume";
 import ShortResume from "./applicant/Resume/ShortResume";
@@ -19,6 +18,7 @@ import ProfileSummary from "./reports/ProfileSummary";
 import OverallSummary from "./reports/OverallSummaryForEachJob";
 import BlackListReport from "./reports/BlackListApplicants";
 import BlacklistApplicantList from "./applicant/Blacklisted";
+import MenuCategoryList from "./menu_category";
 
 function HrAdminPanel({ userType }) {
   // if (userType != 3) {
@@ -27,13 +27,16 @@ function HrAdminPanel({ userType }) {
       <Switch>
         {<Redirect exact from="/hr-admin" to="/hr-admin/dashboard" />}
         <ContentRoute path="/hr-admin/dashboard" component={Dashboard} exact />
-        <ContentRoute path="/hr-admin/slider/list" component={SliderList} />
+        <ContentRoute
+          path="/hr-admin/menucategory/list"
+          component={MenuCategoryList}
+        />
         <ContentRoute
           path="/hr-admin/settings/view"
           component={AdminSettings}
         />
-        <ContentRoute path="/hr-admin/jobs/jobs-list" component={Job} />
-        <ContentRoute path="/hr-admin/jobs/:id" component={JobsDetails} exact />
+        {/* <ContentRoute path="/hr-admin/jobs/jobs-list" component={Job} /> */}
+        {/* <ContentRoute path="/hr-admin/jobs/:id" component={JobsDetails} exact /> */}
         {/* <ContentRoute path="/hr-admin/applicant-list/:id" component={Applicant} exact /> */}
 
         <ContentRoute

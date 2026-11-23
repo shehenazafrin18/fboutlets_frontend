@@ -5,16 +5,11 @@ import SVG from "react-inlinesvg";
 import { useHtmlClassService } from "../../_core/MetronicLayout";
 import { toAbsoluteUrl } from "../../../_helpers";
 import { useDispatch, useSelector } from "react-redux";
-import * as jobAction from "../../../../app/_redux/jobActions"
-
+import * as jobAction from "../../../../app/_redux/jobActions";
 
 export function Brand() {
-  const {
-    user,
-    systemInfo
-  } = useSelector((state) => ({
+  const { user } = useSelector((state) => ({
     user: state.auth,
-    systemInfo: state.job.systemInfo
   }));
   const dispatch = useDispatch();
   const uiService = useHtmlClassService();
@@ -24,17 +19,12 @@ export function Brand() {
       brandClasses: uiService.getClasses("brand", true),
       asideSelfMinimizeToggle: objectPath.get(
         uiService.config,
-        "aside.self.minimize.toggle"
+        "aside.self.minimize.toggle",
       ),
       headerLogo: uiService.getLogo(),
       headerStickyLogo: uiService.getStickyLogo(),
     };
   }, [uiService]);
-
-
-  useEffect(() => {
-    dispatch(jobAction.fetchALLSystemInfo());
-  }, [dispatch]);
 
   const DOC_CONTAINER = process.env.REACT_APP_DOC_CONTAINER;
   const DOC_TOKEN = process.env.REACT_APP_DOC_TOKEN;
@@ -52,8 +42,8 @@ export function Brand() {
             alt="logo"
             className="img-fluid"
             style={{ height: "70px" }}
-            src={systemInfo ? (DOC_CONTAINER + systemInfo?.logo + DOC_TOKEN) : "images/logo.png"}
-          // src={layoutProps.headerLogo}
+            src={"images/logo.png"}
+            // src={layoutProps.headerLogo}
           />
         </Link>
         {/* end::Logo */}
@@ -68,7 +58,7 @@ export function Brand() {
               <span className="svg-icon svg-icon-xl">
                 <SVG
                   src={toAbsoluteUrl(
-                    "/media/svg/icons/Navigation/Angle-double-left.svg"
+                    "/media/svg/icons/Navigation/Angle-double-left.svg",
                   )}
                 />
               </span>
@@ -76,7 +66,7 @@ export function Brand() {
             {/* end::Toolbar */}
           </>
         )}
-      </div >
+      </div>
       {/* end::Brand */}
     </>
   );

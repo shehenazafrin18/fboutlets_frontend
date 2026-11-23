@@ -655,6 +655,9 @@ input {
 .card {
   border: 2px solid #ededed !important;
 }
-
+.description-textarea {
+  min-height: 180px;
+  resize: vertical;
+}
 
 iframe#webpack-dev-server-client-overlay{display:none!important}

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import swal from "sweetalert2";
 import * as jobAction from "../../_redux/jobActions";
-import * as ApplicantJobActions from "../../pages/jobs/_redux/applicantJobActions"
+// import * as ApplicantJobActions from "../../pages/jobs/_redux/applicantJobActions"
 import { calculateDateRangeCount } from '../../helpers/remainingDays';
 import { formatCurrency } from '../../helpers/common';
 
@@ -24,26 +24,26 @@ export function JobsInfocard(
         });
         if (result.isConfirmed) {
             await dispatch(jobAction.unsaveJob(jobId));
-            await dispatch(ApplicantJobActions.getSavedJobList(userId, page, size));
+            // await dispatch(ApplicantJobActions.getSavedJobList(userId, page, size));
 
         }
     }
     const handleJobWithdraw = async (e, jobId) => {
         // if (jobData?.hrms_job__status === "Pending" || "Published") {
-            const result = await swal.fire({
-                text: 'Do you want to withdrawal this job application??',
-                icon: "warning",
-                showCancelButton: true,
-                confirmButtonText: 'Yes',
-                cancelButtonText: 'No',
-                confirmButtonColor: "#3699FF",
-                heightAuto: false, // Disable auto height to allow custom height
-            });
-            if (result.isConfirmed) {
-                await dispatch(jobAction.withdrawJobApplication(jobId));
-                await dispatch(ApplicantJobActions.getAppliedJobList(userId, page, size));
+        const result = await swal.fire({
+            text: 'Do you want to withdrawal this job application??',
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonText: 'Yes',
+            cancelButtonText: 'No',
+            confirmButtonColor: "#3699FF",
+            heightAuto: false, // Disable auto height to allow custom height
+        });
+        if (result.isConfirmed) {
+            await dispatch(jobAction.withdrawJobApplication(jobId));
+            // await dispatch(ApplicantJobActions.getAppliedJobList(userId, page, size));
 
-            }
+        }
         // } else {
         //     await swal.fire({
         //         text: `You can't withdrawal this job application now!!`,
@@ -69,7 +69,7 @@ export function JobsInfocard(
                 <ul>
                     <li className='d-flex'>
                         <i className="fas fa-business-time"></i>
-                        <div> {jobData?.hrms_job__minimum_experience>0?jobData?.hrms_job__minimum_experience+' Years':"Fresher"}  </div>
+                        <div> {jobData?.hrms_job__minimum_experience > 0 ? jobData?.hrms_job__minimum_experience + ' Years' : "Fresher"}  </div>
                     </li>
                     <li className='d-flex'>
                         <i className="fas fa-clock"></i>
@@ -138,7 +138,7 @@ export function JobsInfocard(
                         <i className="fas fa-calendar-alt mr-2"></i>
                         {jobData?.hrms_job__application_deadline ? moment(jobData?.hrms_job__application_deadline).format("DD MMMM YYYY") : "N/A"}
                     </p>
-                    {rangeCount && rangeCount> 0 && <p className='remaining_day'> 
+                    {rangeCount && rangeCount > 0 && <p className='remaining_day'>
                         Remaining {rangeCount} Days
                     </p>}
                 </div>

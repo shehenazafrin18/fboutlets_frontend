@@ -2,18 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { TitleWithEditCard } from '../../../components/cards/TitleWithEditCard'
 import { Dropdown, } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
-import AddSlider from './AddSlider';
+import AddMenuCategory from './AddMenuCategory';
 import * as hractions from "../_redux/hrActions"
-import ViewSlider from './ViewSlider';
+import ViewMenuCategory from './ViewMenuCategory';
 import { swalConfirm } from '../../../helpers/swal';
 
-export default function SliderList() {
+export default function MenuCategoryList() {
+    // console.log('MenuCategoryList'); return false;
     const dispatch = useDispatch();
     const [showEdit, setShowEdit] = useState(false);
     const [showView, setShowView] = useState(false);
     const [tagline, setTagLine] = useState();
     const [subTitile, setSubTitle] = useState('');
-    const [sliderId, setSliderId] = useState(0)
+    const [menuCategoryId, setMenuCategoryId] = useState(0)
     const initSl = {
         title: '',
         sub_title: 'Available Jobs',
@@ -21,89 +22,77 @@ export default function SliderList() {
         file_path: '',
     };
     const [selectedData, setSelectedData] = useState([initSl]);
-    const [action, setAction] = useState('Add Slider')
+    const [action, setAction] = useState('Add Menu Category')
 
-    const { sliderList, user } = useSelector((state) => ({
-        sliderList: state.hr.sliderList,
+    const { menuCategoryList, user } = useSelector((state) => ({
+        menuCategoryList: state.hr.menuCategoryList,
         user: state.auth.user,
     }));
 
     useEffect(() => {
-        dispatch(hractions.getSliderList());
+        dispatch(hractions.getMenuCategoryList());
     }, [dispatch, user]);
 
     const handleDropdownItemClick = (actionType, item) => {
 
         const newData = {
-            'title': item?.hrms_career_portal_slider__title,
-            'sub_title': item?.hrms_career_portal_slider__sub_title,
-            'tag_line': item?.hrms_career_portal_slider__tag_line,
-            'file_path': item?.hrms_career_portal_slider__file_path,
+            'name': item?.name,
+            'description': item?.description,
+            'status': item?.status,
         };
-        setTagLine(item?.hrms_career_portal_slider__tag_line);
-        setSubTitle(item?.hrms_career_portal_slider__sub_title);
         setSelectedData(newData);
         setAction(actionType);
-        setSliderId(item?.hrms_career_portal_slider__id);
+        setMenuCategoryId(item?.id);
     };
 
-
+    console.log({ selectedData })
 
     const handleDelete = async (id) => {
         swalConfirm().then(async (res) => {
             if (res.isConfirmed) {
-                await dispatch(hractions.deleteSlider(id));
-                await dispatch(hractions.getSliderList());
+                await dispatch(hractions.deleteMenuCategory(id));
+                await dispatch(hractions.getMenuCategoryList());
             }
         });
     };
-
-    const DOC_CONTAINER = process.env.REACT_APP_DOC_CONTAINER;
-    const DOC_TOKEN = process.env.REACT_APP_DOC_TOKEN;
-
     return (
         <>
 
             <TitleWithEditCard
-                title="Slider List"
+                title="Menu Category List"
                 setShowEdit={setShowEdit}
-                btn_label="Add Slider"
+                btn_label="Add Menu Category"
                 btn_icon="fas fa-plus"
-                // setAction={setAction}
-                sliderId={sliderId}
+                menuCategoryId={menuCategoryId}
                 selectedData={selectedData}
                 setSelectedData={setSelectedData}
                 initalTr={initSl}
             >
-                <div className="table-responsive" style={{overflowX: "unset"}}>
+                <div className="table-responsive" style={{ overflowX: "unset" }}>
                     <table className="hr_admin_table table table-centered mb-0">
                         <thead>
                             <tr className='hr_admin_table_tr'>
-                                <th>Slider Images</th>
-                                <th>Title</th>
-                                <th>Subtitle</th>
-                                <th>Tagline</th>
+                                <th>SL</th>
+                                <th>Name</th>
+                                <th>Description</th>
+                                <th>Status</th>
                                 <th style={{ paddingRight: "2rem" }}>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {
-                                sliderList && sliderList.hrms_career_portal_slider.length > 0 && sliderList.hrms_career_portal_slider.map((item, k) => {
+                                menuCategoryList && menuCategoryList.length > 0 && menuCategoryList.map((item, k) => {
                                     return (
                                         <>
 
                                             <tr className='hr_admin_table_tr text-left'>
-                                                <td className="table-image text-left">
-                                                    <img height="45" src={DOC_CONTAINER + item?.hrms_career_portal_slider__file_path + DOC_TOKEN} alt="image" className="rounded" />
-                                                </td>
-                                                <td>{item?.hrms_career_portal_slider__title}</td>
+                                                <td>{k + 1}</td>
+                                                <td>{item?.name}</td>
                                                 <td>
-                                                    {/* <div dangerouslySetInnerHTML={{ __html: item?.hrms_career_portal_slider__sub_title }} /> */}
-                                                    {item?.hrms_career_portal_slider__sub_title}
+                                                    {item?.description}
                                                 </td>
                                                 <td>
-                                                    {/* <div dangerouslySetInnerHTML={{ __html: item?.hrms_career_portal_slider__tag_line }} /> */}
-                                                    {item?.hrms_career_portal_slider__tag_line}
+                                                    {item?.status ? 'Active' : 'Inactive'}
                                                 </td>
                                                 <td className="table_action_btn">
                                                     <Dropdown>
@@ -111,9 +100,9 @@ export default function SliderList() {
                                                             <i className="fas fa-ellipsis-v text-dark"></i>
                                                         </Dropdown.Toggle>
                                                         <Dropdown.Menu>
-                                                            <Dropdown.Item onClick={() => { handleDropdownItemClick('Edit Slider', item); setShowEdit(true); }}>Edit</Dropdown.Item>
-                                                            <Dropdown.Item onClick={() => { handleDropdownItemClick('View Slider', item); setShowView(true) }}>View</Dropdown.Item>
-                                                            <Dropdown.Item onClick={() => { handleDelete(item?.hrms_career_portal_slider__id) }}>Delete</Dropdown.Item>
+                                                            <Dropdown.Item onClick={() => { handleDropdownItemClick('Edit Menu Category', item); setShowEdit(true); }}>Edit</Dropdown.Item>
+                                                            <Dropdown.Item onClick={() => { handleDropdownItemClick('View Menu Category', item); setShowView(true) }}>View</Dropdown.Item>
+                                                            <Dropdown.Item onClick={() => { handleDelete(item?.id) }}>Delete</Dropdown.Item>
                                                         </Dropdown.Menu>
                                                     </Dropdown>
                                                 </td>
@@ -130,32 +119,24 @@ export default function SliderList() {
             </TitleWithEditCard>
 
 
-            <AddSlider
+            <AddMenuCategory
                 show={showEdit}
                 setShow={setShowEdit}
                 selectedData={selectedData}
                 setSelectedData={setSelectedData}
                 initSl={initSl}
                 action={action}
-                sliderId={sliderId}
-                // subTitile={subTitile}
-                setSubTitle={setSubTitle}
-                tagline={tagline}
-                setTagLine={setTagLine}
-                setSliderId={setSliderId}
+                menuCategoryId={menuCategoryId}
+                setMenuCategoryId={setMenuCategoryId}
             />
-            <ViewSlider
+            <ViewMenuCategory
                 show={showView}
                 setShow={setShowView}
                 selectedData={selectedData}
                 setSelectedData={setSelectedData}
                 initSl={initSl}
                 action={action}
-                sliderId={sliderId}
-                // subTitile={subTitile}
-                setSubTitle={setSubTitle}
-                tagline={tagline}
-                setTagLine={setTagLine}
+                menuCategoryId={menuCategoryId}
             />
 
         </>

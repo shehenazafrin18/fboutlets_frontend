@@ -9,19 +9,18 @@ const axiosInstance = axios.create({
 axiosInstance.interceptors.request.use(
   (config) => {
     const authInfo =
-      localStorage.getItem("user") &&
-      localStorage.getItem("user");
+      localStorage.getItem("user") && localStorage.getItem("user");
 
     const token = authInfo ? JSON.parse(authInfo)?.access_token : "";
-
-
+    console.log({ token });
+    // return false;
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
-    config.headers.COMPANY_ID = COMPANY_ID;
+    // config.headers.COMPANY_ID = COMPANY_ID;
     return config;
   },
-  (err) => Promise.reject(err)
+  (err) => Promise.reject(err),
 );
 
 axiosInstance.interceptors.response.use(
@@ -46,7 +45,7 @@ axiosInstance.interceptors.response.use(
     }
 
     return Promise.reject(error);
-  }
+  },
 );
 
 export default axiosInstance;

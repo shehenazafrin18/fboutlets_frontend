@@ -58,7 +58,7 @@ export class HtmlClassService {
     const updatedConfig = Object.assign({}, layoutConfig);
     const headerSelfFixedDesktop = objectPath.get(
       updatedConfig,
-      "header.self.fixed.desktop"
+      "header.self.fixed.desktop",
     );
     const subheaderFixed = objectPath.get(updatedConfig, "subheader.fixed");
     if (subheaderFixed && headerSelfFixedDesktop) {
@@ -101,7 +101,7 @@ export class HtmlClassService {
     if (brandSkin === "light") {
       return toAbsoluteUrl("/media/logos/logo-dark.png");
     } else {
-      return toAbsoluteUrl("/media/logos/light_bracu_logo.png");
+      return toAbsoluteUrl("/media/logos/light__logo.png");
     }
   }
 
@@ -119,7 +119,7 @@ export class HtmlClassService {
   initLayout() {
     const selfBodyBackgroundImage = objectPath.get(
       this.config,
-      "self.body.background-image"
+      "self.body.background-image",
     );
     if (selfBodyBackgroundImage) {
       document.body.style.backgroundImage = `url("${selfBodyBackgroundImage}'")`;
@@ -140,7 +140,7 @@ export class HtmlClassService {
   /**
    * Init Loader
    */
-  initLoader() { }
+  initLoader() {}
 
   /**
    * Init Header
@@ -149,7 +149,7 @@ export class HtmlClassService {
     // Fixed header
     const headerSelfFixedDesktop = objectPath.get(
       this.config,
-      "header.self.fixed.desktop"
+      "header.self.fixed.desktop",
     );
     if (headerSelfFixedDesktop) {
       document.body.classList.add("header-fixed");
@@ -160,7 +160,7 @@ export class HtmlClassService {
 
     const headerSelfFixedMobile = objectPath.get(
       this.config,
-      "header.self.fixed.mobile"
+      "header.self.fixed.mobile",
     );
     if (headerSelfFixedMobile) {
       document.body.classList.add("header-mobile-fixed");
@@ -170,12 +170,12 @@ export class HtmlClassService {
     // Menu
     const headerMenuSelfDisplay = objectPath.get(
       this.config,
-      "header.menu.self.display"
+      "header.menu.self.display",
     );
     if (headerMenuSelfDisplay) {
       const headerMenuSelfLayout = objectPath.get(
         this.config,
-        "header.menu.self.layout"
+        "header.menu.self.layout",
       );
       const headerMenuLayoutCssClass = `header-menu-layout-${headerMenuSelfLayout}`;
       objectPath.push(this.classes, "header_menu", headerMenuLayoutCssClass);
@@ -208,7 +208,7 @@ export class HtmlClassService {
     const subheaderFixed = objectPath.get(this.config, "subheader.fixed");
     const headerSelfFixedDesktop = objectPath.get(
       this.config,
-      "header.self.fixed.desktop"
+      "header.self.fixed.desktop",
     );
     if (subheaderFixed && headerSelfFixedDesktop) {
       document.body.classList.add("subheader-fixed");
@@ -294,7 +294,7 @@ export class HtmlClassService {
     // Dropdown Submenu
     const asideMenuDropdown = objectPath.get(
       this.config,
-      "aside.menu.dropdown"
+      "aside.menu.dropdown",
     );
     if (asideMenuDropdown) {
       objectPath.push(this.classes, "aside_menu", "aside-menu-dropdown");
@@ -308,12 +308,11 @@ export class HtmlClassService {
 
     const asideSubmenuDHoverTimeout = objectPath.get(
       this.config,
-      "aside.menu.submenu.dropdown.hover-timeout"
+      "aside.menu.submenu.dropdown.hover-timeout",
     );
     if (asideSubmenuDHoverTimeout) {
-      this.attributes.aside_menu[
-        "data-menu-dropdown-timeout"
-      ] = asideSubmenuDHoverTimeout;
+      this.attributes.aside_menu["data-menu-dropdown-timeout"] =
+        asideSubmenuDHoverTimeout;
     }
   }
 

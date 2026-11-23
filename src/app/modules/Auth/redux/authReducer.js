@@ -25,11 +25,14 @@ export const loginUser = createAsyncThunk(
           },
         },
       );
+      // console.log({ data });
+      // return false;
+      const userData = jwtDecode(data?.data?.access_token);
+      console.log({ userData });
 
-      const userData = jwtDecode(data.access_token);
       if (userData) {
         const user = {
-          ...data,
+          ...data?.data,
           data: userData,
           // company: data.data.data,
           // language: data.data.data.lang_data,
@@ -91,53 +94,6 @@ export const loginAdmin = createAsyncThunk(
   },
 );
 
-// export const googleLoginUser = createAsyncThunk(
-//   "auth/googleLoginUser",
-//   async (userInfo, { rejectWithValue }) => {
-//     try {
-//       const { data } = await axios.post(
-//         `${process.env.REACT_APP_API_URL}/auth/googleLoginFrontend`,
-//         userInfo,
-//         {
-//           headers: {
-//             "Content-Type": "application/json",
-//           },
-//         }
-//       );
-//       return data;
-//     } catch (error) {
-//       return rejectWithValue(error.response.data.message);
-//     }
-//   }
-// );
-
-// export const logout = createAsyncThunk(
-//   "auth/logout",
-//   async ({}, { rejectWithValue, getState }) => {
-//     try {
-//       const {
-//         auth: {
-//           user: { accessToken, refreshToken },
-//         },
-//       } = getState();
-//       const { data } = await axios.post(
-//         `${process.env.REACT_APP_API_URL}/auth/logout`,
-//         {},
-//         {
-//           headers: {
-//             "Content-Type": "application/json",
-//             Authorization: `Bearer ${accessToken}`,
-//             refreshToken: refreshToken,
-//           },
-//         }
-//       );
-//       return data;
-//     } catch (error) {
-//       return rejectWithValue(error.response.data.message);
-//     }
-//   }
-// );
-
 export const authSlice = createSlice({
   name: "auth",
   initialState,
@@ -146,7 +102,7 @@ export const authSlice = createSlice({
       state.user = {
         ...state.user,
         data: {
-          ...state.user.data,
+          ...state.user?.data?.data,
           profile_image: action.payload.profile_image,
           full_name: action.payload.full_name,
           email: action.payload.email,

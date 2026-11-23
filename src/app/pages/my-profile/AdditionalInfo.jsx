@@ -812,7 +812,7 @@ export default function AdditionalInfo() {
 
             </TitleWithEditCard>
 
-            <TitleWithEditCard title="Acquaintance working in BRACU" setShowEdit={setShowEditRelative} showEdit={showEditRelative}>
+            <TitleWithEditCard title="Acquaintance working in" setShowEdit={setShowEditRelative} showEdit={showEditRelative}>
                 {showEditRelative ?
                     <>
                         <Formik

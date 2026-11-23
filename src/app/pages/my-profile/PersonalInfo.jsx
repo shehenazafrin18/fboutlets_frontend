@@ -295,8 +295,8 @@ export default function PersonalInfo() {
         //     otherwise: Yup.string().nullable()
         // }),
         prev_last_working_date: Yup.string().when(['is_ex_employee', 'prev_joining_date'], (is_ex_employee, prev_joining_date) => {
-            if(is_ex_employee === 1) {
-                if(prev_joining_date) {
+            if (is_ex_employee === 1) {
+                if (prev_joining_date) {
                     return Yup.date()
                         .nullable()
                         .required('Last working day is required')
@@ -318,9 +318,9 @@ export default function PersonalInfo() {
         ex_superviosor_phone: Yup.string().when('is_ex_employee', {
             is: 1,
             then: Yup.string()
-                    .matches(/^[0-9]+$/, "Must be only digits")
-                    .max(11, 'Too Long!')
-                    .nullable(),
+                .matches(/^[0-9]+$/, "Must be only digits")
+                .max(11, 'Too Long!')
+                .nullable(),
             otherwise: Yup.string().nullable()
         }),
         contact_number: Yup.string()
@@ -336,26 +336,26 @@ export default function PersonalInfo() {
             .max(11, 'Too Long!')
             .nullable(),
         about_disability: Yup.string().when(['is_disable'], (is_disable) => {
-            if(is_disable === 1) {
+            if (is_disable === 1) {
                 return Yup.string().nullable().required('Required')
             } else {
                 return Yup.string().nullable()
             }
         }),
         work_permit_expiry_date: Yup.date().when(['work_permit_issue_date'], (work_permit_issue_date) => {
-            if(work_permit_issue_date) {
+            if (work_permit_issue_date) {
                 return Yup.date()
-                        .nullable()
-                        .min(work_permit_issue_date, 'Expire date must be greater than or equal issue date')
+                    .nullable()
+                    .min(work_permit_issue_date, 'Expire date must be greater than or equal issue date')
             } else {
                 return Yup.date().nullable()
             }
         }),
         passport_expiry_date: Yup.date().when(['passport_issue_date'], (passport_issue_date) => {
-            if(passport_issue_date) {
+            if (passport_issue_date) {
                 return Yup.date()
-                        .nullable()
-                        .min(passport_issue_date, 'Expire date must be greater than or equal issue date')
+                    .nullable()
+                    .min(passport_issue_date, 'Expire date must be greater than or equal issue date')
             } else {
                 return Yup.date().nullable()
             }
@@ -458,7 +458,7 @@ export default function PersonalInfo() {
     }, [])
 
     const handleSubmitPer = async (values) => {
-        setSubmitTracker((state) => ({...state, perAddress: true}));
+        setSubmitTracker((state) => ({ ...state, perAddress: true }));
         var formdata = new FormData();
         for (let k in values) {
             if (values[k]) {
@@ -493,11 +493,11 @@ export default function PersonalInfo() {
             .catch((error) => {
                 swalError("someting went wrong");
             });
-        setSubmitTracker((state) => ({...state, perAddress: false}));
+        setSubmitTracker((state) => ({ ...state, perAddress: false }));
     }
 
     const handlePreSubmit = async (values) => {
-        setSubmitTracker((state) => ({...state, preAddress: true}));
+        setSubmitTracker((state) => ({ ...state, preAddress: true }));
         var formdata = new FormData();
         for (let k in values) {
             if (values[k]) {
@@ -521,19 +521,19 @@ export default function PersonalInfo() {
             .catch((error) => {
                 swalError("someting went wrong");
             });
-        setSubmitTracker((state) => ({...state, preAddress: false}));
+        setSubmitTracker((state) => ({ ...state, preAddress: false }));
     }
 
 
 
     const handleSubmit = async (values) => {
-        setSubmitTracker((state) => ({...state, profile: true}));
+        setSubmitTracker((state) => ({ ...state, profile: true }));
         var formdata = new FormData();
         let selectedElements = []
-        
+
         if (values?.is_ex_employee == 1) {
             selectedElements = profileScoreArr.slice(0, 2);
-        }else{
+        } else {
             selectedElements = profileScoreArr.slice(0, 1);
         }
         for (let k in values) {
@@ -584,7 +584,7 @@ export default function PersonalInfo() {
             .catch((error) => {
                 swalError("someting went wrong");
             });
-        setSubmitTracker((state) => ({...state, profile: false}));
+        setSubmitTracker((state) => ({ ...state, profile: false }));
     }
 
     const countryListOption = countryList?.map(function (item) {
@@ -942,24 +942,24 @@ export default function PersonalInfo() {
                                     </div>
                                     <div className="col-md-4 mb-3">
                                         <label className=""><b>Work Permit Issue Date</b></label>
-                                        <Field 
-                                            name="work_permit_issue_date" 
-                                            onChange = {(event) => {
+                                        <Field
+                                            name="work_permit_issue_date"
+                                            onChange={(event) => {
                                                 setFieldValue('work_permit_issue_date', event.target.value);
                                                 setFieldValue('work_permit_expiry_date', "");
                                             }}
-                                            type="date" 
-                                            className="form-control" 
+                                            type="date"
+                                            className="form-control"
                                         />
                                     </div>
                                     <div className="col-md-4 mb-3">
                                         <label className=""><b>Work Permit Expiry Date</b></label>
-                                        <Field 
-                                            name="work_permit_expiry_date" 
-                                            type="date" 
+                                        <Field
+                                            name="work_permit_expiry_date"
+                                            type="date"
                                             className="form-control"
-                                            onChange = {(event) => {
-                                                if(values.work_permit_issue_date) {
+                                            onChange={(event) => {
+                                                if (values.work_permit_issue_date) {
                                                     setFieldValue('work_permit_expiry_date', event.target.value);
                                                 }
                                             }}
@@ -970,11 +970,11 @@ export default function PersonalInfo() {
                                     </div>
                                     <div className="col-md-4 mb-3">
                                         <label className=""><b>Passport Issue Date</b></label>
-                                        <Field 
-                                            name="passport_issue_date" 
-                                            type="date" 
+                                        <Field
+                                            name="passport_issue_date"
+                                            type="date"
                                             className="form-control"
-                                            onChange = {(event) => {
+                                            onChange={(event) => {
                                                 setFieldValue('passport_issue_date', event.target.value);
                                                 setFieldValue('passport_expiry_date', "");
                                             }}
@@ -982,12 +982,12 @@ export default function PersonalInfo() {
                                     </div>
                                     <div className="col-md-4 mb-3">
                                         <label className=""><b>Passport Expiry Date</b></label>
-                                        <Field 
-                                            name="passport_expiry_date" 
-                                            type="date" 
-                                            className="form-control" 
+                                        <Field
+                                            name="passport_expiry_date"
+                                            type="date"
+                                            className="form-control"
                                             onChange={(event) => {
-                                                if(values.passport_issue_date) {
+                                                if (values.passport_issue_date) {
                                                     setFieldValue('passport_expiry_date', event.target.value);
                                                 }
                                             }}
@@ -1003,7 +1003,7 @@ export default function PersonalInfo() {
                                 </div>
                                 <div className="row mt-10">
                                     <div className="col-md-4 mb-3">
-                                        <label className="required"><b>Are you an Ex BRACU Employee?</b></label>
+                                        <label className="required"><b>Are you an Ex  Employee?</b></label>
                                         <Field
                                             name="is_ex_employee"
                                             as="select"
@@ -1024,7 +1024,7 @@ export default function PersonalInfo() {
                                     {values?.is_ex_employee == 1 && (
                                         <>
                                             <div className="col-md-4 mb-3">
-                                                <label className="required"><b>BRACU PIN</b></label>
+                                                <label className="required"><b> PIN</b></label>
                                                 <Field name="ex_employee_code" type="number" className="form-control" />
 
                                                 {errors.ex_employee_code && touched.ex_employee_code ? (
@@ -1179,7 +1179,7 @@ export default function PersonalInfo() {
                         <div className='row'>
                             <div className='col-md-6'>
                                 <div className='card_items_row_flex'>
-                                    <div className='label_box'>Are you an Ex BRACU Employee?</div>
+                                    <div className='label_box'>Are you an Ex  Employee?</div>
                                     <div className='item_data'><strong>: </strong>{applicantsInfo?.is_ex_employee === 1 ? ("Yes") : ("No")}</div>
                                 </div>
                                 {applicantsInfo?.is_ex_employee === 1 && (
@@ -1203,7 +1203,7 @@ export default function PersonalInfo() {
                                 {applicantsInfo?.is_ex_employee === 1 && (
                                     <>
                                         <div className='card_items_row_flex'>
-                                            <div className='label_box'>BRACU PIN</div>
+                                            <div className='label_box'> PIN</div>
                                             <div className='item_data'><strong>: </strong>{applicantsInfo?.ex_employee_code}</div>
                                         </div>
                                         {/* <ItemsLabelRow lable="Currently Brac Employee:" filed={!applicantsInfo?.is_currently_or_prev_employeed_at_brac === 0 ? ("Yes") : ("No")} /> */}
