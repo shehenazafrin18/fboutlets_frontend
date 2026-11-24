@@ -35,6 +35,39 @@ export function updateInventoryItem(param, id) {
 export function deleteInventoryItem(id) {
   return API.delete(`/inventory-item/${id}`);
 }
+
+export function getOutletMenuList() {
+  return API.get(`/outlet-menu`);
+}
+
+export function saveOutletMenu(param) {
+  return API.post(`/outlet-menu`, param);
+}
+
+export function updateOutletMenu(param, id) {
+  return API.patch(`/outlet-menu/${id}`, param);
+}
+
+export function deleteOutletMenu(id) {
+  return API.delete(`/outlet-menu/${id}`);
+}
+
+export function getInventories() {
+  return API.get(`/inventories`);
+}
+export function deleteInventories(id) {
+  return API.delete(`/inventories/${id}`);
+}
+export function saveInventories(param) {
+  return API.post(`/inventories`, param);
+}
+
+export function updateInventories(param, id) {
+  return API.patch(`/inventories/${id}`, param);
+}
+export function getOutletList() {
+  return API.get(`/outlet`);
+}
 // ------------- F&B Outlets END ----------------//
 
 export function getSettingsData() {

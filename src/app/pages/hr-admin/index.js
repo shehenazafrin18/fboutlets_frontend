@@ -18,9 +18,10 @@ import BlackListReport from "./reports/BlackListApplicants";
 import BlacklistApplicantList from "./applicant/Blacklisted";
 import MenuCategoryList from "./menu_category";
 import InventoryItemsList from "./inventory_items";
+import OutletMenu from "./outlet_menu";
+import Inventories from "./inventories";
 
 function HrAdminPanel({ userType }) {
-  // if (userType != 3) {
   return (
     <Suspense fallback={<SplashScreen />}>
       <Switch>
@@ -34,13 +35,12 @@ function HrAdminPanel({ userType }) {
           path="/hr-admin/inventory/item"
           component={InventoryItemsList}
         />
+        <ContentRoute path="/hr-admin/outletmenu" component={OutletMenu} />
+        <ContentRoute path="/hr-admin/inventory" component={Inventories} />
         <ContentRoute
           path="/hr-admin/settings/view"
           component={AdminSettings}
         />
-        {/* <ContentRoute path="/hr-admin/jobs/jobs-list" component={Job} /> */}
-        {/* <ContentRoute path="/hr-admin/jobs/:id" component={JobsDetails} exact /> */}
-        {/* <ContentRoute path="/hr-admin/applicant-list/:id" component={Applicant} exact /> */}
 
         <ContentRoute
           path="/hr-admin/applicant-list"
@@ -99,9 +99,6 @@ function HrAdminPanel({ userType }) {
       </Switch>
     </Suspense>
   );
-  // } else {
-  //   <Redirect to="/" />
-  // }
 }
 
 export default HrAdminPanel;

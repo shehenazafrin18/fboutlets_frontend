@@ -45,6 +45,21 @@ export const hrSlice = createSlice({
       state.actionsLoading = false;
       state.inventoryItemList = action.payload.inventoryItemList;
     },
+    getOutletMenuList: (state, action) => {
+      state.error = null;
+      state.actionsLoading = false;
+      state.outletMenuList = action.payload.outletMenuList;
+    },
+    getInventories: (state, action) => {
+      state.error = null;
+      state.actionsLoading = false;
+      state.inventories = action.payload.inventories;
+    },
+    getOutletList: (state, action) => {
+      state.error = null;
+      state.actionsLoading = false;
+      state.outletList = action.payload.outletList;
+    },
 
     getMenuCategoryById: (state, action) => {
       state.error = null;

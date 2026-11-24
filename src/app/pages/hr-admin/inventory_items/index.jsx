@@ -52,7 +52,7 @@ export default function InventoryItemsList() {
         swalConfirm().then(async (res) => {
             if (res.isConfirmed) {
                 await dispatch(hractions.deleteInventoryItem(id));
-                await dispatch(hractions.getinventoryItemList());
+                await dispatch(hractions.getInventoryItemList());
             }
         });
     };

@@ -10,7 +10,7 @@ export const getMenuCategoryList = () => (dispatch) => {
   return requestFromServer
     .getMenuCategoryList()
     .then((response) => {
-      console.log("response", response);
+      // console.log("response", response);
       if (response?.data?.data) {
         dispatch(
           actions.getMenuCategoryList({
@@ -120,7 +120,6 @@ export const getInventoryItemList = () => (dispatch) => {
   return requestFromServer
     .getInventoryItemList()
     .then((response) => {
-      console.log("response", response?.data?.data);
       if (response?.data) {
         dispatch(
           actions.getInventoryItemList({
@@ -200,7 +199,202 @@ export const updateInventoryItem = (param, id) => (dispatch) => {
     });
 };
 
+///Outlet Menu
+export const getOutletMenuList = () => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .getOutletMenuList()
+    .then((response) => {
+      // console.log("response", response);
+      if (response?.data?.data) {
+        dispatch(
+          actions.getOutletMenuList({
+            outletMenuList: response?.data?.data,
+          }),
+        );
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+export const deleteOutletMenu = (id) => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .deleteOutletMenu(id)
+    .then((response) => {
+      if (response.data.success) {
+        swalSuccess("Inventory Item Deleted !!!");
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+export const saveOutletMenu = (param) => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .saveOutletMenu(param)
+    .then((response) => {
+      if (response.data.success) {
+        swalSuccess("Inventory Item Saved!!!");
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+export const updateOutletMenu = (param, id) => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .updateOutletMenu(param, id)
+    .then((response) => {
+      if (response.data.success) {
+        swalSuccess("Inventory Item Updated!!!");
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+//Inventory
+export const getInventories = () => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .getInventories()
+    .then((response) => {
+      // console.log("response", response);
+      if (response?.data?.data) {
+        dispatch(
+          actions.getInventories({
+            inventories: response?.data?.data,
+          }),
+        );
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+export const deleteInventories = (id) => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .deleteInventories(id)
+    .then((response) => {
+      if (response.data.success) {
+        swalSuccess("Inventory Item Deleted !!!");
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+export const saveInventories = (param) => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .saveInventories(param)
+    .then((response) => {
+      if (response.data.success) {
+        swalSuccess("Inventory Saved!!!");
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+export const updateInventories = (param, id) => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .updateInventories(param, id)
+    .then((response) => {
+      if (response.data.success) {
+        swalSuccess("Inventory Updated!!!");
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+export const getOutletList = () => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .getOutletList()
+    .then((response) => {
+      if (response?.data) {
+        dispatch(
+          actions.getOutletList({
+            outletList: response?.data?.data,
+          }),
+        );
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
 // ------------- F&B Outlets END ----------------//
+
 export const getSettingsData = () => (dispatch) => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
@@ -360,53 +554,53 @@ export const fetchAllJob = (param) => (dispatch) => {
 //         });
 // };
 
-export const getDashboardJobApplication = () => (dispatch) => {
-  dispatch(actions.startCall({ callType: callTypes.action }));
-  return requestFromServer
-    .getDashboardJobApplication()
-    .then((response) => {
-      if (response?.data?.data) {
-        dispatch(
-          actions.dashboardJobApplication({
-            dashboardJobApplication: response?.data?.data,
-          }),
-        );
-      } else {
-        if (response.data.message) {
-          swalError(response.data.message);
-        } else {
-          swalError("someting went wrong");
-        }
-      }
-    })
-    .catch((error) => {
-      dispatch(actions.catchError({ error, callType: callTypes.action }));
-    });
-};
+// export const getDashboardJobApplication = () => (dispatch) => {
+//   dispatch(actions.startCall({ callType: callTypes.action }));
+//   return requestFromServer
+//     .getDashboardJobApplication()
+//     .then((response) => {
+//       if (response?.data?.data) {
+//         dispatch(
+//           actions.dashboardJobApplication({
+//             dashboardJobApplication: response?.data?.data,
+//           }),
+//         );
+//       } else {
+//         if (response.data.message) {
+//           swalError(response.data.message);
+//         } else {
+//           swalError("someting went wrong");
+//         }
+//       }
+//     })
+//     .catch((error) => {
+//       dispatch(actions.catchError({ error, callType: callTypes.action }));
+//     });
+// };
 
-export const getDashboardJobInfo = () => (dispatch) => {
-  dispatch(actions.startCall({ callType: callTypes.action }));
-  return requestFromServer
-    .getDashboardJobInfo()
-    .then((response) => {
-      if (response?.data?.data) {
-        dispatch(
-          actions.dashboardJobInfo({
-            dashboardJobInfo: response?.data?.data,
-          }),
-        );
-      } else {
-        if (response.data.message) {
-          swalError(response.data.message);
-        } else {
-          swalError("someting went wrong");
-        }
-      }
-    })
-    .catch((error) => {
-      dispatch(actions.catchError({ error, callType: callTypes.action }));
-    });
-};
+// export const getDashboardJobInfo = () => (dispatch) => {
+//   dispatch(actions.startCall({ callType: callTypes.action }));
+//   return requestFromServer
+//     .getDashboardJobInfo()
+//     .then((response) => {
+//       if (response?.data?.data) {
+//         dispatch(
+//           actions.dashboardJobInfo({
+//             dashboardJobInfo: response?.data?.data,
+//           }),
+//         );
+//       } else {
+//         if (response.data.message) {
+//           swalError(response.data.message);
+//         } else {
+//           swalError("someting went wrong");
+//         }
+//       }
+//     })
+//     .catch((error) => {
+//       dispatch(actions.catchError({ error, callType: callTypes.action }));
+//     });
+// };
 
 // export const getDashboardApplicantsInfo = () => (dispatch) => {
 //   dispatch(actions.startCall({ callType: callTypes.action }));
