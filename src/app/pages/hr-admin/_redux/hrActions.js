@@ -855,11 +855,12 @@ export const fetchAllJob = (param) => (dispatch) => {
 //     });
 // };
 
-export const getMenuList = (typeId) => (dispatch) => {
+export const getMenuList = (roles) => (dispatch) => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .getMenuList(typeId)
+    .getMenuList(roles)
     .then((response) => {
+      console.log({ roles });
       if (response?.data?.data) {
         dispatch(
           actions.menuList({

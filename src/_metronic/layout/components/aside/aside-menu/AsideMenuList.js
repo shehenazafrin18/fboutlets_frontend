@@ -55,9 +55,12 @@ export function AsideMenuList({ layoutProps }) {
       setMenus(menuData);
     }
   }, [menuList]);
+  console.log({ menuList });
   useEffect(() => {
-    if (user?.data?.user_type) {
-      dispatch(hractions.getMenuList(user?.data?.user_type));
+    if (user?.data) {
+      const roles = user?.data?.roles.join(",");
+      console.log({ roles });
+      dispatch(hractions.getMenuList(roles));
     }
   }, [user]);
 
@@ -83,15 +86,16 @@ export function AsideMenuList({ layoutProps }) {
                 </li> */}
         {/* dashboard static menu end */}
 
-        {menus &&
-          menus?.length > 0 &&
-          menus?.map((menu, key) => (
+        {menuList &&
+          menuList?.length > 0 &&
+          menuList?.map((menu, key) => (
             <li
               key={key}
               className={`menu-item ${menu?.submenu ? "menu-item-submenu" : ""} ${getMenuItemActive(`/${menu?.url}`, true)}`}
               aria-haspopup="true"
               data-menu-toggle="hover"
             >
+              {/* {JSON.stringify(menu)} */}
               <NavLink
                 className="menu-link menu-toggle"
                 to={menu?.url ? `/${menu?.url}` : "/hr-admin/dashboard"}
@@ -99,7 +103,7 @@ export function AsideMenuList({ layoutProps }) {
                 <span className="svg-icon menu-icon">
                   <i className={menu?.icon}></i>
                 </span>
-                <span className="menu-text">{menu?.menu}</span>
+                <span className="menu-text">{menu?.name}</span>
                 {menu?.submenu ? <i className="menu-arrow" /> : ""}
               </NavLink>
 

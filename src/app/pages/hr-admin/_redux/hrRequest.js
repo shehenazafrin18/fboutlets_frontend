@@ -156,8 +156,8 @@ export function downloadApplicant(body = [], type = "word") {
 //   return API.get(`/common/get-job-application-info`);
 // }
 
-export function getMenuList(type_id) {
-  return API.get(`/career_portal_menu_priviledge/menus/${type_id}`);
+export function getMenuList(roles) {
+  return API.get(`/auth?roles=${roles}`);
 }
 export function getApplicantList(params) {
   return API.get(`/hrms_applicant`, {
