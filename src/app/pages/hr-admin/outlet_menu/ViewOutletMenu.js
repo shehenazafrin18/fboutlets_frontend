@@ -1,8 +1,4 @@
-import { ErrorMessage, Field, Formik } from "formik";
-import React, { useState } from "react";
 import { Form, Modal } from "react-bootstrap";
-import * as Yup from "yup";
-import Editor from "../../../../_metronic/_partials/controls/Editor";
 
 export default function ViewOutletMenu({
   show,
@@ -25,37 +21,38 @@ export default function ViewOutletMenu({
       <Modal.Header>
         <Modal.Title>{action}</Modal.Title>
       </Modal.Header>
+
       <Modal.Body>
         <Form>
-          <div className="row">
-            <div className="col-md-12 mx-auto">
-              <div className="row mt-4">
-                <div className="col-md-12 mb-3">
-                  <label className="required">
-                    <b>Name</b>
-                  </label>
-                  <p>{selectedData?.name}</p>
-                </div>
-                <div className="col-md-12 mb-3">
-                  <label className="required">
-                    <b>Description</b>
-                  </label>
-                  <p>{selectedData?.description}</p>
-                </div>
+          <div className="row mt-4">
+            <div className="col-md-6 mb-3">
+              <b>Outlet</b>: {selectedData?.outlet_name || "-"}
+            </div>
 
-                <div className="col-md-12 mt-5 mb-3 text-right">
-                  <button
-                    className="btn btn-default mr-3"
-                    type="button"
-                    onClick={() => {
-                      setShow(false);
-                      setSelectedData(initSl);
-                    }}
-                  >
-                    Close
-                  </button>
-                </div>
-              </div>
+            <div className="col-md-6 mb-3">
+              <b>Menu</b>: {selectedData?.menu_name || "-"}
+            </div>
+
+            <div className="col-md-6 mb-3">
+              <b>Selling Price</b>: {selectedData?.selling_price || 0}
+            </div>
+
+            <div className="col-md-6 mb-3">
+              <b>Availability</b>:{" "}
+              {selectedData?.is_available ? "Available" : "Unavailable"}
+            </div>
+
+            <div className="col-md-12 mt-4 text-right">
+              <button
+                className="btn btn-default"
+                type="button"
+                onClick={() => {
+                  setShow(false);
+                  setSelectedData(initSl);
+                }}
+              >
+                Close
+              </button>
             </div>
           </div>
         </Form>

@@ -20,6 +20,9 @@ export function getMenuCategoryById(id) {
   return API.get(`/menu-categories/${id}`);
 }
 
+export function getMenuItemList() {
+  return API.get(`/menu-items`);
+}
 export function getInventoryItemList() {
   return API.get(`/inventory-item`);
 }
@@ -36,16 +39,22 @@ export function deleteInventoryItem(id) {
   return API.delete(`/inventory-item/${id}`);
 }
 
-export function getOutletMenuList() {
-  return API.get(`/outlet-menu`);
+export function getOutletMenuList(outletId) {
+  return API.get(`/outlet-menu/outlets/menu/${outletId}`);
 }
 
-export function saveOutletMenu(param) {
-  return API.post(`/outlet-menu`, param);
+export function saveOutletMenu(outletId, itemId, param) {
+  return API.post(
+    `/outlet-menu/outlets/${outletId}/menu-items/${itemId}/assign`,
+    param,
+  );
 }
 
-export function updateOutletMenu(param, id) {
-  return API.patch(`/outlet-menu/${id}`, param);
+export function updateOutletMenu(outletId, itemId, param) {
+  return API.patch(
+    `/outlet-menu/outlets/${outletId}/menu-items/price/${itemId}`,
+    param,
+  );
 }
 
 export function deleteOutletMenu(id) {
@@ -61,12 +70,43 @@ export function deleteInventories(id) {
 export function saveInventories(param) {
   return API.post(`/inventories`, param);
 }
-
 export function updateInventories(param, id) {
   return API.patch(`/inventories/${id}`, param);
 }
 export function getOutletList() {
   return API.get(`/outlet`);
+}
+export function getSupplierList() {
+  return API.get(`/suppliers`);
+}
+
+export function getPurchaseList() {
+  return API.get(`/purchases`);
+}
+export function deletePurchase(id) {
+  return API.delete(`/purchases/${id}`);
+}
+export function savePurchase(param) {
+  return API.post(`/purchases`, param);
+}
+export function updatePurchase(param, id) {
+  return API.patch(`/purchases/${id}`, param);
+}
+
+export function createSales(param) {
+  return API.post(`/sales`, param);
+}
+
+export function getSalesByOutlet(outletId) {
+  return API.get(`/sales/outlet/${outletId}`);
+}
+export function getRevenueByOutlet(startDate, endDate, outletId) {
+  return API.get(`/sales/revenue/outlets/${startDate}/${endDate}/${outletId}`);
+}
+export function getTopSellingItems(startDate, endDate, outletId) {
+  return API.get(
+    `/sales/top-selling-items/${startDate}/${endDate}/${outletId}`,
+  );
 }
 // ------------- F&B Outlets END ----------------//
 

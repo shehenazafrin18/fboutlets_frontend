@@ -114,6 +114,31 @@ export const getMenuCategoryById = (id) => (dispatch) => {
     });
 };
 
+//Menu Item
+export const getMenuItemList = () => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .getMenuItemList()
+    .then((response) => {
+      // console.log("response", response);
+      if (response?.data?.data) {
+        dispatch(
+          actions.getMenuItemList({
+            menuItemList: response?.data?.data,
+          }),
+        );
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
 // Inventory Items API Start
 export const getInventoryItemList = () => (dispatch) => {
   dispatch(actions.startCall({ callType: callTypes.action }));
@@ -200,10 +225,10 @@ export const updateInventoryItem = (param, id) => (dispatch) => {
 };
 
 ///Outlet Menu
-export const getOutletMenuList = () => (dispatch) => {
+export const getOutletMenuList = (outletId) => (dispatch) => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .getOutletMenuList()
+    .getOutletMenuList(outletId)
     .then((response) => {
       // console.log("response", response);
       if (response?.data?.data) {
@@ -245,10 +270,10 @@ export const deleteOutletMenu = (id) => (dispatch) => {
     });
 };
 
-export const saveOutletMenu = (param) => (dispatch) => {
+export const saveOutletMenu = (outletId, itemId, param) => (dispatch) => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .saveOutletMenu(param)
+    .saveOutletMenu(outletId, itemId, param)
     .then((response) => {
       if (response.data.success) {
         swalSuccess("Inventory Item Saved!!!");
@@ -265,10 +290,10 @@ export const saveOutletMenu = (param) => (dispatch) => {
     });
 };
 
-export const updateOutletMenu = (param, id) => (dispatch) => {
+export const updateOutletMenu = (outletId, itemId, param) => (dispatch) => {
   dispatch(actions.startCall({ callType: callTypes.action }));
   return requestFromServer
-    .updateOutletMenu(param, id)
+    .updateOutletMenu(outletId, itemId, param)
     .then((response) => {
       if (response.data.success) {
         swalSuccess("Inventory Item Updated!!!");
@@ -393,6 +418,210 @@ export const getOutletList = () => (dispatch) => {
       dispatch(actions.catchError({ error, callType: callTypes.action }));
     });
 };
+//Supplier
+export const getSupplierList = () => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .getSupplierList()
+    .then((response) => {
+      if (response?.data) {
+        dispatch(
+          actions.getSupplierList({
+            supplierList: response?.data?.data,
+          }),
+        );
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+//purchase
+
+export const getPurchaseList = () => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .getPurchaseList()
+    .then((response) => {
+      if (response?.data?.data) {
+        dispatch(
+          actions.getPurchaseList({
+            purchaseList: response?.data?.data,
+          }),
+        );
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+export const deletePurchase = (id) => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .deletePurchase(id)
+    .then((response) => {
+      if (response.data.success) {
+        swalSuccess("Purchase  Items Deleted !!!");
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+export const savePurchase = (param) => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .savePurchase(param)
+    .then((response) => {
+      if (response.data.success) {
+        swalSuccess("Purchased Items successfully!!!");
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+export const updatePurchase = (param, id) => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .updatePurchase(param, id)
+    .then((response) => {
+      if (response.data.success) {
+        swalSuccess("Purchase Updated!!!");
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+//Sales
+export const createSale = (param) => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .createSales(param)
+    .then((response) => {
+      if (response.data.success) {
+        swalSuccess("Operation successful!!!");
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+
+//reports
+
+export const getSalesByOutlet = (outletId) => (dispatch) => {
+  dispatch(actions.startCall({ callType: callTypes.action }));
+  return requestFromServer
+    .getSalesByOutlet(outletId)
+    .then((response) => {
+      if (response?.data?.data) {
+        dispatch(
+          actions.getSalesByOutlet({
+            salesByOutlet: response?.data?.data,
+          }),
+        );
+      } else {
+        if (response.data.message) {
+          swalError(response.data.message);
+        } else {
+          swalError("someting went wrong");
+        }
+      }
+    })
+    .catch((error) => {
+      dispatch(actions.catchError({ error, callType: callTypes.action }));
+    });
+};
+export const getRevenueByOutlet =
+  (startDate, endDate, outletId) => (dispatch) => {
+    dispatch(actions.startCall({ callType: callTypes.action }));
+    return requestFromServer
+      .getRevenueByOutlet(startDate, endDate, outletId)
+      .then((response) => {
+        if (response?.data?.data) {
+          dispatch(
+            actions.getRevenueByOutlet({
+              reveueByOutlet: response?.data?.data,
+            }),
+          );
+        } else {
+          if (response.data.message) {
+            swalError(response.data.message);
+          } else {
+            swalError("someting went wrong");
+          }
+        }
+      })
+      .catch((error) => {
+        dispatch(actions.catchError({ error, callType: callTypes.action }));
+      });
+  };
+export const getTopSellingItems =
+  (startDate, endDate, outletId) => (dispatch) => {
+    dispatch(actions.startCall({ callType: callTypes.action }));
+    return requestFromServer
+      .getTopSellingItems(startDate, endDate, outletId)
+      .then((response) => {
+        if (response?.data?.data) {
+          dispatch(
+            actions.getTopSellingItems({
+              topSellingItems: response?.data?.data,
+            }),
+          );
+        } else {
+          if (response.data.message) {
+            swalError(response.data.message);
+          } else {
+            swalError("someting went wrong");
+          }
+        }
+      })
+      .catch((error) => {
+        dispatch(actions.catchError({ error, callType: callTypes.action }));
+      });
+  };
 // ------------- F&B Outlets END ----------------//
 
 export const getSettingsData = () => (dispatch) => {

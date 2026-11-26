@@ -20,6 +20,8 @@ import MenuCategoryList from "./menu_category";
 import InventoryItemsList from "./inventory_items";
 import OutletMenu from "./outlet_menu";
 import Inventories from "./inventories";
+import Purchases from "./purchase";
+import CreateSales from "./CreateSales";
 
 function HrAdminPanel({ userType }) {
   return (
@@ -37,6 +39,8 @@ function HrAdminPanel({ userType }) {
         />
         <ContentRoute path="/hr-admin/outletmenu" component={OutletMenu} />
         <ContentRoute path="/hr-admin/inventory" component={Inventories} />
+        <ContentRoute path="/hr-admin/purchase" component={Purchases} />
+        <ContentRoute path="/hr-admin/sales" component={CreateSales} />
         <ContentRoute
           path="/hr-admin/settings/view"
           component={AdminSettings}

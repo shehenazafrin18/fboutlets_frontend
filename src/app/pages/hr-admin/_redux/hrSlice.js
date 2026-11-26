@@ -40,6 +40,11 @@ export const hrSlice = createSlice({
       state.actionsLoading = false;
       state.menuCategoryList = action.payload.menuCategoryList;
     },
+    getMenuItemList: (state, action) => {
+      state.error = null;
+      state.actionsLoading = false;
+      state.menuItemList = action.payload.menuItemList;
+    },
     getInventoryItemList: (state, action) => {
       state.error = null;
       state.actionsLoading = false;
@@ -59,6 +64,31 @@ export const hrSlice = createSlice({
       state.error = null;
       state.actionsLoading = false;
       state.outletList = action.payload.outletList;
+    },
+    getSupplierList: (state, action) => {
+      state.error = null;
+      state.actionsLoading = false;
+      state.supplierList = action.payload.supplierList;
+    },
+    getPurchaseList: (state, action) => {
+      state.error = null;
+      state.actionsLoading = false;
+      state.purchaseList = action.payload.purchaseList;
+    },
+    getSalesByOutlet: (state, action) => {
+      state.error = null;
+      state.actionsLoading = false;
+      state.salesByOutlet = action.payload.salesByOutlet;
+    },
+    getRevenueByOutlet: (state, action) => {
+      state.error = null;
+      state.actionsLoading = false;
+      state.reveueByOutlet = action.payload.reveueByOutlet;
+    },
+    getTopSellingItems: (state, action) => {
+      state.error = null;
+      state.actionsLoading = false;
+      state.topSellingItems = action.payload.topSellingItems;
     },
 
     getMenuCategoryById: (state, action) => {
